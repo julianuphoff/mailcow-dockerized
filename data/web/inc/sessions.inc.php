@@ -54,8 +54,14 @@ if (!empty($_SERVER['HTTP_X_API_KEY'])) {
     $remote = get_remote_ip(false);
     $allow_from = array_map('trim', preg_split( "/( |,|;|\n)/", $api_return['allow_from']));
     if ($skip_ip_check === true || ip_acl($remote, $allow_from)) {
-      $_SESSION['mailcow_cc_username'] = 'API';
-      $_SESSION['mailcow_cc_role'] = 'admin';
+      if(empty(api_return['domain_admin']) {
+        $_SESSION['mailcow_cc_username'] = 'API';
+        $_SESSION['mailcow_cc_role'] = 'admin';
+      } else {
+        $_SESSION['mailcow_cc_username'] = api_return['domain_admin'];
+        $_SESSION['mailcow_cc_role'] = 'domainadmin';
+      }
+      
       $_SESSION['mailcow_cc_api'] = true;
       if ($api_return['access'] == 'rw') {
         $_SESSION['mailcow_cc_api_access'] = 'rw';
