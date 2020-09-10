@@ -182,7 +182,8 @@ function init_db_schema() {
           "created" => "DATETIME(0) NOT NULL DEFAULT NOW(0)",
           "modified" => "DATETIME ON UPDATE NOW(0)",
           "access" => "ENUM('ro', 'rw') NOT NULL DEFAULT 'rw'",
-          "active" => "TINYINT(1) NOT NULL DEFAULT '1'"
+          "active" => "TINYINT(1) NOT NULL DEFAULT '1'",
+          "domain_admin" => "VARCHAR(255)",
         ),
         "keys" => array(
           "primary" => array(
